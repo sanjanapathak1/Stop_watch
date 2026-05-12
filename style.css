@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.title {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.StopWatch h1 {
+    font-size: 150px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+.Buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Buttons button {
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(88, 146, 113);
+    transition: 0.3s ease;
+}
+
+#start:hover {
+    background-color: rgb(85, 255, 110);
+    color: #1f5500;
+    transform: scale(1.05);
+}
+
+#stop:hover {
+    background-color: rgb(255, 52, 52);
+    transform: scale(1.05);
+}
+
+#reset:hover {
+    background: linear-gradient(90deg, red 0%, rgb(9, 165, 76) 100%);
+    transform: scale(1.05);
+}
+
+#Lap:hover {
+    background-color: rgb(144, 225, 238);
+    color: #0051ff;
+    transform: scale(1.05);
+}
+
+.lap-section {
+    width: 350px;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    transition: 0.3s ease;
+}
+
+.lap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
+.lap-counter {
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.lap-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.lap-list {
+    list-style: none;
+}
+
+.lap-list li {
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.lap-list li:hover {
+    transform: scale(1.02);
+}
+
+#themeToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    transition: 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.05);
+}
+
+/* ========== DARK MODE (DEFAULT) ========== */
+body.dark {
+    background-color: #000;
+    color: #fff;
+}
+
+body.dark .lap-section {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark .lap-header {
+    border-bottom: 2px solid #333;
+    color: #fff;
+}
+
+body.dark .lap-counter {
+    background-color: #39ff5a;
+    color: black;
+}
+
+body.dark .lap-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* ========== LIGHT MODE ========== */
+body.light {
+    background-color: #fff;
+    color: #000;
+}
+
+body.light .title {
+    color: #000;
+}
+
+body.light .StopWatch h1 {
+    color: #000;
+}
+
+body.light .lap-section {
+    background-color: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light .lap-header {
+    border-bottom: 2px solid #e0e0e0;
+    color: #000;
+}
+
+body.light .lap-counter {
+    background-color: #10b981;
+    color: #fff;
+}
+
+body.light .lap-list li {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: #000;
+}
+
+body.light .lap-list li:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+body.light #themeToggle {
+    background-color: #ddd;
+    color: #000;
+}
+
+body.light #themeToggle:hover {
+    background-color: #bbb;
+}
+
+/* Scrollbar Styling */
+.lap-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lap-list-container::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.lap-list-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+body.dark .lap-list-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .lap-list-container::-webkit-scrollbar-thumb {
+    background: #39ff5a;
+}
+
+body.light .lap-list-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light .lap-list-container::-webkit-scrollbar-thumb {
+    background: #10b981;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .StopWatch h1 {
+        font-size: 80px;
+        letter-spacing: 4px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .Buttons button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .lap-section {
+        width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .StopWatch h1 {
+        font-size: 50px;
+        letter-spacing: 2px;
+    }
+
+    .Buttons button {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .lap-section {
+        width: 260px;
+    }
+
+    .lap-list li {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+<link rel="Stylesheet" href="style.css">
+</head>
+<body>
+<div class="hero-section">
+<span class="title">StopWatch</span>
+<button id="themeToggle">🌙 Dark Mode</button>
+<div class="StopWatch">
+<h1> 00:00:00 </h1>
+</div>
+<div class="Buttons">
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<button id="reset">Reset</button>
+<button id="Lap">Lap</button>
+</div>
+
+<div class="lap-section">
+      <div class="lap-header">
+        <span> LAP TIMES</span>
+        <span class="lap-counter" id="lapCounter">0</span>
+      </div>
+      <div class="lap-list-container">
+        <ul class="lap-list" id="lapList">
+          <li class="empty-lap-msg">— No laps recorded —</li>
+        </ul>
+      </div>
+    </div>
+</div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
