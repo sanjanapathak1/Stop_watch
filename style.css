@@ -5,25 +5,150 @@
 }
 
 body {
-    font-family: monospace;
+    font-family: 'Courier New', 'Fira Code', monospace;
     min-height: 100vh;
-    background-color: #000;
-    color: #fff;
+    background: linear-gradient(145deg, #0a2f1a 0%, #1c4d2d 100%);
+    color: #e3f0cf;
     transition: 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+
+/* all content wrapper for perfect centering */
 .hero-section {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    position: relative;
+    z-index: 2;
 }
 
+/* ===== JUNGLE DECORATIVE ELEMENTS (small geometric shapes - no icons) ===== */
+/* tiny circles as floating spores/pollen */
+body::before {
+    content: "";
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(180,210,100,0.15) 2px, transparent 2px);
+    background-size: 18px 18px;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 15%;
+    right: 15px;
+    width: 100px;
+    height: 200px;
+    background: repeating-linear-gradient(90deg, 
+        rgba(120,160,60,0.12) 0px, 
+        rgba(120,160,60,0.12) 2px,
+        transparent 2px,
+        transparent 12px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* tiny diamond shapes scattered */
+@keyframes slowDrift {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+    100% { transform: translate(8px, -12px) rotate(25deg); opacity: 0.5; }
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    width: 8px;
+    height: 8px;
+    background: #b8d98c;
+    transform: rotate(45deg);
+    opacity: 0.35;
+    animation: slowDrift 4s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 18%;
+    right: 10%;
+    width: 6px;
+    height: 6px;
+    background: #e9c96e;
+    transform: rotate(45deg);
+    opacity: 0.4;
+    animation: slowDrift 3.5s infinite alternate-reverse ease-in-out;
+    pointer-events: none;
+}
+
+/* small plus/cross shapes like tiny leaves */
+.mini-ornament {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: #aacc77;
+    border-radius: 1px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* generating multiple tiny geometric shapes using pseudo-elements */
 .title {
-    font-size: 40px;
+    font-size: 42px;
     margin-bottom: 20px;
+    text-shadow: 3px 3px 0 #1e3a2f, 5px 5px 0 #0a2b1a;
+    background: linear-gradient(135deg, #d4f1b3, #b7e37c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    display: inline-block;
+    padding: 0 15px;
+    position: relative;
+}
+
+/* tiny line clusters around title */
+.title::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: #7cb342;
+    opacity: 0.6;
+    transform: translateY(-50%);
+    border-radius: 2px;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    background: #7cb342;
+    opacity: 0.6;
+    transform: translateY(-50%);
+    border-radius: 2px;
 }
 
 .StopWatch h1 {
@@ -31,79 +156,179 @@ body {
     font-weight: bold;
     letter-spacing: 8px;
     text-align: center;
+    background: linear-gradient(145deg, #f9e0a0, #c0dd70);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+    position: relative;
 }
 
+/* small squares around timer */
+.StopWatch h1::before {
+    content: "◆";
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #8bc34a;
+    opacity: 0.5;
+    font-family: monospace;
+}
+
+.StopWatch h1::after {
+    content: "■";
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #cddc39;
+    opacity: 0.5;
+    font-family: monospace;
+}
+
+/* ----- BUTTONS : WOOD & MOSS STYLE (centered group)----- */
 .Buttons {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin-top: 32px;
+    position: relative;
 }
 
 .Buttons button {
     padding: 12px 28px;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 60px;
     cursor: pointer;
-    color: white;
-    background-color: rgb(88, 146, 113);
-    transition: 0.3s ease;
+    color: #212e1a;
+    background: #8b5a2b;
+    background-image: radial-gradient(circle at 25% 35%, #b87c3e, #5a3a1a);
+    box-shadow: 0 8px 0 #2d2b1f, 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.1s linear;
+    font-family: monospace;
+    letter-spacing: 1px;
 }
 
+.Buttons button:active {
+    transform: translateY(4px);
+    box-shadow: 0 3px 0 #2d2b1f;
+}
+
+/* hover effects */
 #start:hover {
-    background-color: rgb(85, 255, 110);
-    color: #1f5500;
-    transform: scale(1.05);
+    background: #5b8c3e;
+    background-image: radial-gradient(circle at 30% 35%, #7cb342, #376e1f);
+    color: #faffd4;
 }
 
 #stop:hover {
-    background-color: rgb(255, 52, 52);
-    transform: scale(1.05);
+    background: #b3472c;
+    background-image: radial-gradient(circle at 30% 40%, #d95b3a, #862d12);
 }
 
 #reset:hover {
-    background: linear-gradient(90deg, red 0%, rgb(9, 165, 76) 100%);
-    transform: scale(1.05);
+    background: #3f6842;
+    background-image: radial-gradient(circle at 30% 40%, #578b48, #234d21);
 }
 
 #Lap:hover {
-    background-color: rgb(144, 225, 238);
-    color: #0051ff;
-    transform: scale(1.05);
+    background: #2c6e5c;
+    background-image: radial-gradient(circle at 25% 40%, #419e82, #1f5443);
 }
 
+/* small decorative dots between buttons */
+.Buttons::before {
+    content: "●";
+    position: absolute;
+    left: -20px;
+    font-size: 10px;
+    color: #afc97e;
+    opacity: 0.6;
+}
+
+.Buttons::after {
+    content: "●";
+    position: absolute;
+    right: -20px;
+    font-size: 10px;
+    color: #afc97e;
+    opacity: 0.6;
+}
+
+/* Lap section : centered & elegant */
 .lap-section {
-    width: 350px;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
+    width: 380px;
+    margin-top: 40px;
+    padding: 20px 20px 25px;
+    border-radius: 35px;
+    background: rgba(25, 40, 18, 0.65);
+    backdrop-filter: blur(4px);
+    border: 1px solid #6f964b;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,200,0.1);
     transition: 0.3s ease;
+    position: relative;
+}
+
+/* tiny geometric border accents */
+.lap-section::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 30px;
+    height: 4px;
+    background: #cb9e5c;
+    border-radius: 4px;
+    opacity: 0.7;
+}
+
+.lap-section::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: 20px;
+    width: 30px;
+    height: 4px;
+    background: #cb9e5c;
+    border-radius: 4px;
+    opacity: 0.7;
 }
 
 .lap-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-    font-size: 20px;
+    margin-bottom: 18px;
+    font-size: 22px;
     font-weight: bold;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
+    border-bottom: 3px dashed #aac78d;
+    color: #e8f0cf;
+    text-shadow: 1px 1px 0 #2a471f;
 }
 
 .lap-counter {
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
+    background: #c48a3c;
+    color: #1f3213;
+    box-shadow: inset 0 1px 2px #efcd91, 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .lap-list-container {
-    max-height: 200px;
+    max-height: 210px;
     overflow-y: auto;
+    margin-top: 8px;
+    padding-right: 5px;
 }
 
 .lap-list {
@@ -111,176 +336,260 @@ body {
 }
 
 .lap-list li {
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 10px 16px;
+    border-radius: 60px;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    transition: 0.3s ease;
+    font-weight: 500;
+    background: #2b4121bb;
+    border-left: 6px solid #dfb358;
+    transition: 0.18s ease;
+    backdrop-filter: blur(2px);
+    font-family: monospace;
+}
+
+/* small dot as bullet for each lap instead of icon */
+.lap-list li::before {
+    content: "⬤";
+    margin-right: 12px;
+    font-size: 10px;
+    color: #e0b05e;
+    opacity: 0.8;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .lap-list li:hover {
-    transform: scale(1.02);
+    transform: translateX(8px) scale(1.01);
+    background: #3c5f28cc;
+    border-left-color: #f3c26b;
 }
 
+/* Theme Toggle - centered relative to right but visually balanced */
 #themeToggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 18px;
+    position: fixed;
+    top: 22px;
+    right: 25px;
+    padding: 10px 21px;
     border: none;
-    border-radius: 20px;
+    border-radius: 40px;
     cursor: pointer;
     font-weight: bold;
-    background-color: #333;
-    color: white;
-    transition: 0.3s ease;
+    font-size: 17px;
+    background: #3f612b;
+    color: #faf7cf;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: 0.2s;
+    backdrop-filter: blur(4px);
+    z-index: 20;
+    font-family: monospace;
 }
 
-#themeToggle:hover {
-    transform: scale(1.05);
-}
-
-/* ========== DARK MODE (DEFAULT) ========== */
+/* ========= DARK JUNGLE (deep moody forest) ========= */
 body.dark {
-    background-color: #000;
-    color: #fff;
+    background: linear-gradient(125deg, #0a2413, #102f1a);
+    color: #cde6b3;
 }
 
 body.dark .lap-section {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #557c33;
 }
 
 body.dark .lap-header {
-    border-bottom: 2px solid #333;
-    color: #fff;
+    border-bottom: 3px dotted #739a4b;
 }
 
 body.dark .lap-counter {
-    background-color: #39ff5a;
-    color: black;
+    background: #b5762e;
+    color: #1a2c0e;
 }
 
 body.dark .lap-list li {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: #1c2d12aa;
+    border-left-color: #eba45e;
 }
 
-/* ========== LIGHT MODE ========== */
+body.dark .lap-list li:hover {
+    background: #335a1fcc;
+}
+
+body.dark #themeToggle {
+    background: #366322;
+}
+
+/* ========= LIGHT JUNGLE (sunny canopy) ========= */
 body.light {
-    background-color: #fff;
-    color: #000;
+    background: linear-gradient(125deg, #cfe8b5, #b0cf8c);
+    color: #1c2b12;
 }
 
 body.light .title {
-    color: #000;
+    text-shadow: 2px 2px 0 #5f8243;
 }
 
 body.light .StopWatch h1 {
-    color: #000;
+    background: linear-gradient(145deg, #375e1f, #5e9436);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 body.light .lap-section {
-    background-color: rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(250, 245, 205, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid #7faa5b;
 }
 
 body.light .lap-header {
-    border-bottom: 2px solid #e0e0e0;
-    color: #000;
+    border-bottom: 3px dashed #6e9f42;
+    color: #1d3b10;
 }
 
 body.light .lap-counter {
-    background-color: #10b981;
-    color: #fff;
+    background: #d9922e;
+    color: #2d421b;
 }
 
 body.light .lap-list li {
-    background-color: rgba(0, 0, 0, 0.08);
-    color: #000;
+    background: rgba(162, 197, 120, 0.5);
+    border-left-color: #cc862a;
 }
 
 body.light .lap-list li:hover {
-    background-color: rgba(0, 0, 0, 0.15);
+    background: rgba(130, 180, 70, 0.7);
 }
 
 body.light #themeToggle {
-    background-color: #ddd;
-    color: #000;
+    background: #b37b2e;
+    color: #1f3212;
 }
 
-body.light #themeToggle:hover {
-    background-color: #bbb;
+/* extra tiny geometric floating elements (small triangles, circles) */
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.4; }
+    100% { transform: translateY(-60px) rotate(30deg); opacity: 0; }
 }
 
-/* Scrollbar Styling */
+.geometric-dot {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: #cfec8f;
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: floatUp 6s infinite linear;
+}
+
+/* generate small repeating patterns in background as subtle leaves */
+body {
+    background-image: 
+        radial-gradient(circle at 15% 40%, rgba(150,200,80,0.08) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 75% 85%, rgba(200,180,70,0.07) 2px, transparent 2px);
+    background-size: 40px 40px, 55px 55px;
+}
+
+/* scrollbar kept same but centered feel */
 .lap-list-container::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .lap-list-container::-webkit-scrollbar-track {
-    border-radius: 10px;
+    border-radius: 16px;
+    background: #2d4620;
 }
 
 .lap-list-container::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-}
-
-body.dark .lap-list-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-body.dark .lap-list-container::-webkit-scrollbar-thumb {
-    background: #39ff5a;
+    border-radius: 16px;
+    background: #cb9735;
 }
 
 body.light .lap-list-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
+    background: #b2cf94;
 }
 
 body.light .lap-list-container::-webkit-scrollbar-thumb {
-    background: #10b981;
+    background: #7c5624;
 }
 
-/* ========== RESPONSIVE ========== */
+/* small square cluster near buttons (additional charm) */
+.Buttons .deco-shape {
+    position: relative;
+}
+
+/* ========= RESPONSIVE ========= */
 @media (max-width: 768px) {
     .StopWatch h1 {
         font-size: 80px;
         letter-spacing: 4px;
     }
-
     .title {
         font-size: 28px;
     }
-
     .Buttons button {
         padding: 8px 20px;
         font-size: 14px;
     }
-
     .lap-section {
-        width: 300px;
+        width: 320px;
+    }
+    .StopWatch h1::before,
+    .StopWatch h1::after {
+        font-size: 16px;
+        left: -20px;
+        right: -20px;
+    }
+    .title::before,
+    .title::after {
+        width: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .StopWatch h1 {
-        font-size: 50px;
+        font-size: 52px;
         letter-spacing: 2px;
     }
-
     .Buttons button {
         padding: 6px 14px;
         font-size: 12px;
     }
-
     .lap-section {
-        width: 260px;
+        width: 270px;
     }
-
     .lap-list li {
         font-size: 14px;
+        padding: 8px 12px;
     }
+    .StopWatch h1::before,
+    .StopWatch h1::after {
+        display: none;
+    }
+    .title::before,
+    .title::after {
+        display: none;
+    }
+    .Buttons::before,
+    .Buttons::after {
+        display: none;
+    }
+}
+
+/* ensure all main containers are centrally aligned */
+body, .hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hero-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
